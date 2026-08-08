@@ -1,2 +1,2 @@
-from rich import Console
+from rich.console import Console
 con = Console()

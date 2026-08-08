@@ -1,5 +1,6 @@
 import pygame
 import os
+from console import con
 
 screen = pygame.display.set_mode((512,288))
 class makeSprites:
@@ -14,7 +15,7 @@ def setupSprites():
     subFolders = os.listdir("assets/img")
     for folder in subFolders:
         images = os.listdir(f"assets/img/{folder}")
-        print(f"looking in folder {folder}")
+        con.print(f"looking in folder {folder}")
         for sprite in images:
             sprites.update({sprite.split(".png")[0]:makeSprites(f"assets/img/{folder}/{sprite}")})
     print(sprites)
