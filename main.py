@@ -80,10 +80,16 @@ while Running:
         mouse.Interact = "cursor"
 
     # Show ore stats
-    '''if pressedKeys[9]:
+    if pressedKeys[9]:
+        stockTimer += 1*deltaTime
+        if stockTimer >= 0.75:
+            print("toggled stock off")
+            stockToggle = False
+
+    if pressedKeys[9] and not stockToggle:
         visualMode = "viewStats"
     elif not stockToggle:
-        visualMode = "plotLook"'''
+        visualMode = "plotLook"
 
     if visualMode == "viewStats":
         textY = 0
@@ -92,7 +98,7 @@ while Running:
             visibleFont = regularFont.render(text, True, (0,0,0))
             screen.blit(visibleFont, (32, textY))
             textY += regularFont.get_point_size()
-            con.print(regularFont.get_point_size())
+            #con.print(regularFont.get_point_size())
 
     # Rendering of the Plot
     for plot in plots:
@@ -137,13 +143,20 @@ while Running:
             if event.key == pygame.K_ESCAPE:
                 con.print("closing")
             if event.key == pygame.K_TAB:
-                visualMode = "viewStats"
+                if stockToggle:
+                    stockToggle = False
+                    visualMode = "plotLook"
+                else:
+                    stockToggle = True
+                    visualMode = "viewStats"
                 
         if event.type == pygame.KEYUP:
             pressedKeys.update({event.key:False})
             if event.key == pygame.K_ESCAPE:
                 quitTimer = 0
                 darknors.set_alpha(0)
+            if event.key == pygame.K_TAB:
+                stockTimer = 0
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse.mousy = pygame.mouse.get_pressed()
             mouse.validClick = True

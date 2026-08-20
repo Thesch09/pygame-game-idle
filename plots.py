@@ -31,8 +31,6 @@ class plot:
                         
                         con.print(f"Added {item} to {self.name}")
                         break
-                else:
-                    con.print("[red]Failed generation")
     def reorderContents(self):
         tempList = []
 
