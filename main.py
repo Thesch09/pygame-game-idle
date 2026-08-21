@@ -82,8 +82,7 @@ while Running:
     # Show ore stats
     if pressedKeys[9]:
         stockTimer += 1*deltaTime
-        if stockTimer >= 0.75:
-            print("toggled stock off")
+        if stockTimer >= 0.5:
             stockToggle = False
 
     if pressedKeys[9] and not stockToggle:
